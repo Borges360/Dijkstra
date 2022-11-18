@@ -115,7 +115,12 @@ public class Dijkstra {
             System.out.println("Nao foram visitados ainda:"+naoVisitados);
 
         }
+        int somaTotal = 0;
+        for (Vertice vertice : menorCaminho) {
+            somaTotal += vertice.getDistancia();
 
+        }
+        System.out.println("Soma total: " + somaTotal);
         return menorCaminho;
     }
 
