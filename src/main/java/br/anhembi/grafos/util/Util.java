@@ -8,6 +8,8 @@ import br.anhembi.grafos.exception.VerticeNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util {
 
@@ -16,6 +18,10 @@ public class Util {
         int amountVertices;
 
         try {
+
+            List<Vertice> vizinhosAtual = new ArrayList<Vertice>();
+            List<Aresta> arestasAtual = new ArrayList<Aresta>();
+
             FileReader fileReader = new FileReader(fileName);
             BufferedReader buffer = new BufferedReader(fileReader);
 
@@ -38,7 +44,17 @@ public class Util {
             while (buffer.ready()) {
                 line = buffer.readLine();
                 String[] partes = line.split(",");
-                graph.encontrarVertice(partes[0]).setAresta(new Aresta(new Vertice(partes[0]), new Vertice(partes[1]), Integer.parseInt(partes[2])));
+                Vertice verticeOrigem = graph.encontrarVertice(partes[0]);
+                Vertice verticeDestino = graph.encontrarVertice(partes[1]);
+                Aresta aresta = new Aresta(verticeOrigem, verticeDestino, Integer.parseInt(partes[2]));
+                verticeOrigem.setVizinho(verticeDestino);
+
+                if(!graph.isDirected()){
+                    verticeDestino.setVizinho(verticeOrigem);
+                    verticeDestino.setAresta(new Aresta(verticeDestino, verticeOrigem, Integer.parseInt(partes[2])));
+                }
+                graph.encontrarVertice(partes[0]).setAresta(aresta);
+
             }
 
             buffer.close();

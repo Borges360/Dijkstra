@@ -13,6 +13,11 @@ public class Grafo {
         this.grafo.addAll(vertices);
     }
 
+    public void setVertice(Vertice vertice) {
+
+        this.grafo.add(vertice);
+    }
+
     public void adicionarVertice(Vertice novoVertice) {
 
         this.grafo.add(novoVertice);

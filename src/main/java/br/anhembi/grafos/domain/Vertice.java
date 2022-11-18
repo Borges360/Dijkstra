@@ -61,9 +61,9 @@ public class Vertice implements Comparable<Vertice>{
         return this.pai;
     }
 
-    public void setVizinhos(List<Vertice> vizinhos) {
+    public void setVizinho(Vertice vizinho) {
 
-        this.vizinhos.addAll(vizinhos);
+        this.vizinhos.add(vizinho);
 
     }
 
