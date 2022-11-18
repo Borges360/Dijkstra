@@ -20,7 +20,7 @@ public class Util {
             BufferedReader buffer = new BufferedReader(fileReader);
 
             String line = buffer.readLine();
-            if (line.equals("S") || line.equals("s"))
+            if (line.equalsIgnoreCase("S"))
                 directed = true;
 
             line = buffer.readLine();
