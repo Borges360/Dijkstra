@@ -2,21 +2,21 @@ package br.anhembi.grafos.domain;
 
 import java.util.*;
 
-public class Node {
+public class Vertice {
 
     private String nome;
 
-    private List<Node> caminhoMaisCurto = new LinkedList<>();
+    private List<Vertice> caminhoMaisCurto = new LinkedList<>();
 
     private Integer distancia = Integer.MAX_VALUE;
 
-    private Map<Node, Integer> nodesAdjacentes = new HashMap<>();
+    private Map<Vertice, Integer> nodesAdjacentes = new HashMap<>();
 
-    public void addDestino(Node destination, int distance) {
+    public void addDestino(Vertice destination, int distance) {
         nodesAdjacentes.put(destination, distance);
     }
 
-    public Node(String nome) {
+    public Vertice(String nome) {
         this.nome = nome;
     }
 
@@ -30,11 +30,11 @@ public class Node {
         this.nome = nome;
     }
 
-    public List<Node> getCaminhoMaisCurto() {
+    public List<Vertice> getCaminhoMaisCurto() {
         return caminhoMaisCurto;
     }
 
-    public void setCaminhoMaisCurto(List<Node> caminhoMaisCurto) {
+    public void setCaminhoMaisCurto(List<Vertice> caminhoMaisCurto) {
         this.caminhoMaisCurto = caminhoMaisCurto;
     }
 
@@ -46,11 +46,11 @@ public class Node {
         this.distancia = distancia;
     }
 
-    public Map<Node, Integer> getNodesAdjacentes() {
+    public Map<Vertice, Integer> getNodesAdjacentes() {
         return nodesAdjacentes;
     }
 
-    public void setNodesAdjacentes(Map<Node, Integer> nodesAdjacentes) {
+    public void setNodesAdjacentes(Map<Vertice, Integer> nodesAdjacentes) {
         this.nodesAdjacentes = nodesAdjacentes;
     }
 }

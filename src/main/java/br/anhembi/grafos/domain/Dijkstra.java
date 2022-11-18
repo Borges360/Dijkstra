@@ -7,53 +7,53 @@ import java.util.Set;
 
 public class Dijkstra {
 
-    public Grafo calcularCaminhoMaisCurto(Grafo grafo, Node source) {
+    public Grafo calcularCaminhoMaisCurto(Grafo grafo, Vertice source) {
         source.setDistancia(0);
 
-        Set<Node> nodesProcessados = new HashSet<>();
-        Set<Node> nodesNaoProcessados = new HashSet<>();
+        Set<Vertice> nodesProcessados = new HashSet<>();
+        Set<Vertice> nodesNaoProcessados = new HashSet<>();
 
         nodesNaoProcessados.add(source);
 
         while (nodesNaoProcessados.size() != 0) {
-            Node nodeAtual = getMenordistancia(nodesNaoProcessados);
-            nodesNaoProcessados.remove(nodeAtual);
-            for (Map.Entry<Node,Integer> parAjacente:
-                    nodeAtual.getNodesAdjacentes().entrySet()) {
-                Node nodeAdjacente = parAjacente.getKey();
+            Vertice verticeAtual = getMenordistancia(nodesNaoProcessados);
+            nodesNaoProcessados.remove(verticeAtual);
+            for (Map.Entry<Vertice,Integer> parAjacente:
+                    verticeAtual.getNodesAdjacentes().entrySet()) {
+                Vertice verticeAdjacente = parAjacente.getKey();
                 Integer edgeWeight = parAjacente.getValue();
-                if (!nodesProcessados.contains(nodeAdjacente)) {
-                    calcularMenorDistancia(nodeAdjacente, edgeWeight, nodeAtual);
-                    nodesNaoProcessados.add(nodeAdjacente);
+                if (!nodesProcessados.contains(verticeAdjacente)) {
+                    calcularMenorDistancia(verticeAdjacente, edgeWeight, verticeAtual);
+                    nodesNaoProcessados.add(verticeAdjacente);
                 }
             }
-            nodesProcessados.add(nodeAtual);
+            nodesProcessados.add(verticeAtual);
         }
         return grafo;
     }
 
-    private static void calcularMenorDistancia(Node evaluationNode,
-                                               Integer edgeWeigh, Node sourceNode) {
-        Integer sourceDistance = sourceNode.getDistancia();
-        if (sourceDistance + edgeWeigh < evaluationNode.getDistancia()) {
-            evaluationNode.setDistancia(sourceDistance + edgeWeigh);
-            LinkedList<Node> shortestPath = new LinkedList<>(sourceNode.getCaminhoMaisCurto());
-            shortestPath.add(sourceNode);
-            evaluationNode.setCaminhoMaisCurto(shortestPath);
+    private static void calcularMenorDistancia(Vertice evaluationVertice,
+                                               Integer edgeWeigh, Vertice sourceVertice) {
+        Integer sourceDistance = sourceVertice.getDistancia();
+        if (sourceDistance + edgeWeigh < evaluationVertice.getDistancia()) {
+            evaluationVertice.setDistancia(sourceDistance + edgeWeigh);
+            LinkedList<Vertice> shortestPath = new LinkedList<>(sourceVertice.getCaminhoMaisCurto());
+            shortestPath.add(sourceVertice);
+            evaluationVertice.setCaminhoMaisCurto(shortestPath);
         }
     }
 
-    private Node getMenordistancia(Set<Node> unsettledNodes) {
-        Node lowestDistanceNode = null;
+    private Vertice getMenordistancia(Set<Vertice> unsettledVertices) {
+        Vertice lowestDistanceVertice = null;
         int lowestDistance = Integer.MAX_VALUE;
-        for (Node node: unsettledNodes) {
-            int nodeDistance = node.getDistancia();
+        for (Vertice vertice : unsettledVertices) {
+            int nodeDistance = vertice.getDistancia();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;
-                lowestDistanceNode = node;
+                lowestDistanceVertice = vertice;
             }
         }
-        return lowestDistanceNode;
+        return lowestDistanceVertice;
     }
 
 }
