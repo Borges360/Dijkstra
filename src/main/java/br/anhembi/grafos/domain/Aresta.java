@@ -2,25 +2,42 @@ package br.anhembi.grafos.domain;
 
 public class Aresta {
 
-    private Vertice vertex;
-    private double value;
+    private int peso;
+    private Vertice origem;
+    private Vertice destino;
 
-    public Aresta(Vertice vertex, double value) {
-        this.vertex = vertex;
-        this.value = value;
+    public Aresta(Vertice v1, Vertice v2, int peso) {
+
+        this.peso = 1;
+        this.origem = v1;
+        this.destino = v2;
+
     }
 
-    public Vertice getVertice() {
-        return vertex;
+    public void setPeso(int novoPeso) {
+
+        this.peso = novoPeso;
     }
 
-    public double getValue() {
-        return value;
+    public int getPeso() {
+
+        return peso;
     }
 
-    @Override
-    public String toString() {
-        return " [to " + vertex + ", " + value + "]";
+    public void setDestino(Vertice destino) {
+        this.destino = destino;
+    }
+
+    public Vertice getDestino() {
+        return destino;
+    }
+
+    public void setOrigem(Vertice origem) {
+        this.origem = origem;
+    }
+
+    public Vertice getOrigem() {
+        return origem;
     }
 
 

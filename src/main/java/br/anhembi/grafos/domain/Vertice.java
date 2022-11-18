@@ -1,45 +1,109 @@
 package br.anhembi.grafos.domain;
 
-public class Vertice {
+import java.util.ArrayList;
+import java.util.List;
 
-    private String nome;
+public class Vertice implements Comparable<Vertice>{
 
-    public Vertice(String nome) {
-        this.nome = nome;
+    private String descricao;
+    private int distancia;
+    private boolean visitado = false;
+    private Vertice pai;
+    private List<Aresta> arestas = new ArrayList<Aresta>();
+    private List<Vertice> vizinhos = new ArrayList<Vertice>();
+
+    public Vertice(String descricao){
+        this.descricao = descricao;
     }
 
-    public Vertice() {
+
+    public Vertice(){
     }
 
-    public String getNome() {
-        return nome;
+    public void setDescricao(String nome){
+
+        this.descricao = nome;
     }
 
-    public String toString() {
-        return "(" + nome + ")";
+    public String getDescricao(){
+
+        return descricao;
+
     }
 
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        return result;
+    public void visitar (){
+
+        this.visitado = true;
     }
 
+    public boolean verificarVisita(){
+
+        return visitado;
+    }
+
+    public void setDistancia(int distancia){
+
+        this.distancia = distancia;
+    }
+
+    public int getDistancia(){
+
+        return this.distancia;
+    }
+
+    public void setPai(Vertice pai){
+
+        this.pai = pai;
+    }
+
+    public Vertice getPai(){
+
+        return this.pai;
+    }
+
+    public void setVizinhos(List<Vertice> vizinhos) {
+
+        this.vizinhos.addAll(vizinhos);
+
+    }
+
+    public List<Vertice> getVizinhos(){
+
+        return this.vizinhos;
+    }
+
+    public void setAresta(Aresta aresta){
+        this.arestas.add(aresta);
+
+    }
+
+    public List<Aresta> getArestas() {
+
+        return arestas;
+    }
+
+    public int compareTo(Vertice vertice) {
+        if(this.getDistancia() < vertice.getDistancia()) return -1;
+        else if(this.getDistancia() == vertice.getDistancia()) return 0;
+
+        return 1;
+
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Vertice other = (Vertice) obj;
-        if (nome == null) {
-            if (other.nome != null)
-                return false;
-        } else if (!nome.equals(other.nome))
-            return false;
-        return true;
+        if(obj instanceof Vertice){
+            Vertice vRef = (Vertice) obj;
+            if(this.getDescricao().equals(vRef.getDescricao())) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        String s = " ";
+        s+= this.getDescricao();
+        return s;
     }
 
 

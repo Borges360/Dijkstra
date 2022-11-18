@@ -1,5 +1,6 @@
 package br.anhembi.grafos.util;
 
+import br.anhembi.grafos.domain.Aresta;
 import br.anhembi.grafos.domain.Grafo;
 import br.anhembi.grafos.domain.Vertice;
 import br.anhembi.grafos.exception.VerticeNotFoundException;
@@ -25,16 +26,19 @@ public class Util {
             line = buffer.readLine();
             amountVertices = Integer.parseInt(line);
 
-            Grafo graph = new Grafo(amountVertices, directed);
+            Grafo graph = new Grafo();
+            graph.setDirected(directed);
+
+            System.out.println("O gráfico é " + (directed ? "direcional" : "não é direcional"));
 
             for (int i = 0; i < amountVertices; i++) {
-                graph.addVertice(new Vertice(buffer.readLine()));
+                graph.adicionarVertice(new Vertice(buffer.readLine()));
             }
 
             while (buffer.ready()) {
                 line = buffer.readLine();
                 String[] partes = line.split(",");
-                graph.addAresta(new Vertice(partes[0]), new Vertice(partes[1]), Double.parseDouble(partes[2]));
+                graph.encontrarVertice(partes[0]).setAresta(new Aresta(new Vertice(partes[0]), new Vertice(partes[1]), Integer.parseInt(partes[2])));
             }
 
             buffer.close();
@@ -44,10 +48,6 @@ public class Util {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            return null;
-        } catch (VerticeNotFoundException ex) {
-            System.err.println("Erro: Tentativa de adicionar uma aresta com vértice que não existe");
-            System.err.println(ex.getMessage());
             return null;
         }
     }
