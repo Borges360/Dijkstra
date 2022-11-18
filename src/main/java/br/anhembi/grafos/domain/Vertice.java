@@ -8,6 +8,9 @@ public class Vertice {
         this.nome = nome;
     }
 
+    public Vertice() {
+    }
+
     public String getNome() {
         return nome;
     }
