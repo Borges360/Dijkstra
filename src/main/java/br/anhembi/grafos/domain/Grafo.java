@@ -17,7 +17,7 @@ public class Grafo {
         this.isDirected = directed;
     }
 
-    public boolean addEdge(Vertice u, Vertice v, double value) {
+    public boolean addAresta(Vertice u, Vertice v, double value) {
         Integer line = nomes.get(u.getNome());
         Integer column = nomes.get(v.getNome());
         if (line == null || column == null) {
@@ -64,7 +64,7 @@ public class Grafo {
         return false;
     }
     
-    public boolean removeEdge(Vertice u, Vertice v) {
+    public boolean removeAresta(Vertice u, Vertice v) {
         Integer line = nomes.get(u.getNome());
         Integer column = nomes.get(v.getNome());
         if (line == null || column == null) {

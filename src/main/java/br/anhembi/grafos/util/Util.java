@@ -34,7 +34,7 @@ public class Util {
             while (buffer.ready()) {
                 line = buffer.readLine();
                 String[] partes = line.split(",");
-                graph.addEdge(new Vertice(partes[0]), new Vertice(partes[1]), Double.parseDouble(partes[2]));
+                graph.addAresta(new Vertice(partes[0]), new Vertice(partes[1]), Double.parseDouble(partes[2]));
             }
 
             buffer.close();
