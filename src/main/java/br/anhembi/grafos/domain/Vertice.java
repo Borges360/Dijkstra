@@ -74,6 +74,7 @@ public class Vertice implements Comparable<Vertice>{
 
     public void setAresta(Aresta aresta){
         this.arestas.add(aresta);
+        this.vizinhos.add(aresta.getDestino());
 
     }
 
@@ -101,8 +102,7 @@ public class Vertice implements Comparable<Vertice>{
 
     @Override
     public String toString() {
-        String s = " ";
-        s+= this.getDescricao();
+        String s = this.getDescricao();
         return s;
     }
 

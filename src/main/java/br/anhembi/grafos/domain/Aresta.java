@@ -8,7 +8,7 @@ public class Aresta {
 
     public Aresta(Vertice v1, Vertice v2, int peso) {
 
-        this.peso = 1;
+        this.peso = peso;
         this.origem = v1;
         this.destino = v2;
 
