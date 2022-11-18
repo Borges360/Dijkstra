@@ -34,7 +34,7 @@ public class ListaAdjacente {
         return false;
     }
 
-    public boolean addEdge(Vertice u, Vertice v, double value) {
+    public boolean addAresta(Vertice u, Vertice v, double value) {
         if (vertices.get(u) == null || vertices.get(v) == null) {
             return false;
         }
