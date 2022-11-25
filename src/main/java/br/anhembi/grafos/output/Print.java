@@ -28,7 +28,7 @@ public class Print {
                     route.add(v);
                     printPath(path, v, u, route);
                     route.add(u);
-                    System.out.printf("The shortest path from %d —> %d is %s\n",
+                    System.out.printf("O caminho mais curto de %d —> %d é %s\n",
                             v, u, route);
                 }
             }
